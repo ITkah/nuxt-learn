@@ -1,75 +1,47 @@
-# Nuxt Minimal Starter
+# Shop Learn
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Учебный проект интернет-магазина на [Nuxt](https://nuxt.com/).
 
-## Setup
+## Стек
 
-Make sure to install dependencies:
+- **Nuxt 4** — фреймворк
+- **Vue 3** — UI
+- **Tailwind CSS** — стили
+- **@nuxtjs/i18n** — мультиязычность
+
+## Быстрый старт
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Приложение откроется на [http://localhost:3000](http://localhost:3000).
 
-Build the application for production:
+## Скрипты
 
-```bash
-# npm
-npm run build
+| Команда | Описание |
+|---------|----------|
+| `npm run dev` | Режим разработки |
+| `npm run build` | Сборка для продакшена |
+| `npm run preview` | Просмотр production-сборки |
+| `npm run generate` | Статическая генерация |
 
-# pnpm
-pnpm build
+## Структура
 
-# yarn
-yarn build
-
-# bun
-bun run build
+```
+app/            # Страницы и компоненты
+public/         # Статические файлы
+nuxt.config.ts  # Конфигурация Nuxt
 ```
 
-Locally preview production build:
+## План развития
 
-```bash
-# npm
-npm run preview
+- [ ] Каталог товаров
+- [ ] Страница товара
+- [ ] Корзина
+- [ ] Оформление заказа
 
-# pnpm
-pnpm preview
+## Деплой
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Сборка и деплой — по [документации Nuxt](https://nuxt.com/docs/getting-started/deployment).
