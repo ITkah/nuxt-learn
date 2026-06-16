@@ -1,47 +1,47 @@
 # Shop Learn
 
-Учебный проект интернет-магазина на [Nuxt](https://nuxt.com/).
+A learning project for building an online store with [Nuxt](https://nuxt.com/).
 
-## Стек
+## Stack
 
-- **Nuxt 4** — фреймворк
+- **Nuxt 4** — framework
 - **Vue 3** — UI
-- **Tailwind CSS** — стили
-- **@nuxtjs/i18n** — мультиязычность
+- **Tailwind CSS** — styling
+- **@nuxtjs/i18n** — internationalization
 
-## Быстрый старт
+## Quick start
 
 ```bash
 npm install
 npm run dev
 ```
 
-Приложение откроется на [http://localhost:3000](http://localhost:3000).
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-## Скрипты
+## Scripts
 
-| Команда | Описание |
-|---------|----------|
-| `npm run dev` | Режим разработки |
-| `npm run build` | Сборка для продакшена |
-| `npm run preview` | Просмотр production-сборки |
-| `npm run generate` | Статическая генерация |
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run generate` | Static site generation |
 
-## Структура
+## Project structure
 
 ```
-app/            # Страницы и компоненты
-public/         # Статические файлы
-nuxt.config.ts  # Конфигурация Nuxt
+app/            # Pages and components
+public/         # Static assets
+nuxt.config.ts  # Nuxt configuration
 ```
 
-## План развития
+## Roadmap
 
-- [ ] Каталог товаров
-- [ ] Страница товара
-- [ ] Корзина
-- [ ] Оформление заказа
+- [ ] Product catalog
+- [ ] Product page
+- [ ] Shopping cart
+- [ ] Checkout
 
-## Деплой
+## Deployment
 
-Сборка и деплой — по [документации Nuxt](https://nuxt.com/docs/getting-started/deployment).
+See the [Nuxt deployment docs](https://nuxt.com/docs/getting-started/deployment).
