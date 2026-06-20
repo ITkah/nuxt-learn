@@ -1,0 +1,25 @@
+# Local PostgreSQL for the auth backend.
+#   pnpm db:up    -> start (detached)
+#   pnpm db:down  -> stop
+# Data persists in the named volume `nuxt_learn_pgdata`.
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: nuxt-learn-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nuxt
+      POSTGRES_PASSWORD: nuxt
+      POSTGRES_DB: nuxt_learn
+    ports:
+      - "5533:5432"
+    volumes:
+      - nuxt_learn_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nuxt -d nuxt_learn"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  nuxt_learn_pgdata:
