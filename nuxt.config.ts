@@ -1,16 +1,28 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  css: ['~/assets/css/main.css'],
   runtimeConfig: {
     // server-only — never exposed to the client bundle
     jwtAccessSecret: process.env.JWT_ACCESS_SECRET || '',
     accessTokenTtl: '15m',
     refreshTokenTtlDays: 7,
   },
-  modules: ['@nuxtjs/i18n', '@nuxtjs/tailwindcss'],
+  devServer: {
+    port: 3000,
+  },
+  modules: [
+    '@nuxtjs/i18n',
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@pinia/nuxt',
+    '@vueuse/nuxt',
+    '@nuxtjs/seo',
+  ],
   i18n: {
     defaultLocale: 'en',
     locales: [
@@ -19,8 +31,13 @@ export default defineNuxtConfig({
     ]
   },
   vite: {
+    plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit']
+      include: [
+        '@unhead/schema-org/vue',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+      ]
     }
   },
   nitro: {
