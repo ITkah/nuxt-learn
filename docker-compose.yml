@@ -1,6 +1,7 @@
 # Local PostgreSQL for the auth backend.
-#   pnpm db:up    -> start (detached)
-#   pnpm db:down  -> stop
+#   npm start   -> start DB + Nuxt dev server (localhost:3000)
+#   npm run db:up    -> start DB only (waits until healthy)
+#   npm run db:down  -> stop DB
 # Data persists in the named volume `nuxt_learn_pgdata`.
 services:
   db:
