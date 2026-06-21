@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     accessTokenTtl: '15m',
     refreshTokenTtlDays: 7,
   },
+  site: {
+    name: 'Shop Learn',
+  },
   devServer: {
     port: 3000,
   },
