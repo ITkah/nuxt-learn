@@ -1,8 +1,12 @@
-# Local PostgreSQL for the auth backend.
-#   npm start   -> start DB + Nuxt dev server (localhost:3000)
-#   npm run db:up    -> start DB only (waits until healthy)
-#   npm run db:down  -> stop DB
-# Data persists in the named volume `nuxt_learn_pgdata`.
+# Run everything with one command (works on any laptop after git clone):
+#   docker compose up -d
+#
+# Or via npm:
+#   npm start
+#
+# App:  http://localhost:3000
+# DB:   localhost:5533
+# Logs: docker compose logs -f app
 services:
   db:
     image: postgres:16-alpine
@@ -22,5 +26,31 @@ services:
       timeout: 5s
       retries: 5
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: nuxt-learn-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgresql://nuxt:nuxt@db:5432/nuxt_learn?schema=public
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-dev-jwt-secret-change-me}
+      NUXT_HOST: 0.0.0.0
+      NUXT_TELEMETRY_DISABLED: "1"
+    volumes:
+      - .:/app
+      - app_node_modules:/app/node_modules
+      - app_nuxt:/app/.nuxt
+    depends_on:
+      db:
+        condition: service_healthy
+
 volumes:
   nuxt_learn_pgdata:
+  app_node_modules:
+  app_nuxt:

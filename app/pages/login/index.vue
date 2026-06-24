@@ -1,31 +1,27 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Login',
-  description: 'Sign in to your account'
+  title: 'Sign in',
+  description: 'Sign in to your Shop Learn account.',
 })
 </script>
+
 <template>
-  <main class="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-    <section class="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
-      <div class="mb-8 text-center">
-        <h1 class="text-3xl font-bold text-gray-900">
-          Login
-        </h1>
-        <p class="mt-2 text-gray-500">
-          Sign in to your account
-        </p>
-      </div>
+  <section class="flex min-h-[calc(100vh-4.25rem)] items-center justify-center bg-gradient-to-b from-stone-50 to-stone-100 px-4 py-12">
+    <AuthCard
+      title="Welcome back"
+      subtitle="Sign in to continue shopping"
+    >
+      <LoginForm />
 
-      <p class="mt-6 text-center text-sm text-gray-600">
-        Don’t have an account?
-
+      <p class="mt-6 text-center text-sm text-stone-500">
+        Don't have an account?
         <NuxtLink
           to="/register"
-          class="font-medium text-blue-600 hover:underline"
+          class="font-medium text-stone-900 underline-offset-4 hover:underline"
         >
-          Register
+          Create one
         </NuxtLink>
       </p>
-    </section>
-  </main>
+    </AuthCard>
+  </section>
 </template>
