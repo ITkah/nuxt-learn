@@ -1,5 +1,3 @@
-import { loginSchema } from '#shared/utils/validation'
-
 export default defineEventHandler(async (event) => {
   const parsed = loginSchema.safeParse(await readBody(event))
   if (!parsed.success) {

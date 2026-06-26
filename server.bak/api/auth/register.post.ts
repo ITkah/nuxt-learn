@@ -1,5 +1,3 @@
-import { registerSchema } from '#shared/utils/validation'
-
 export default defineEventHandler(async (event) => {
   const parsed = registerSchema.safeParse(await readBody(event))
   if (!parsed.success) {
