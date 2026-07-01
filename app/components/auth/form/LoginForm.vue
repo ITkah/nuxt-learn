@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { registerSchema, zodFieldErrors } from '#shared/utils/validation'
+import { loginSchema, zodFieldErrors } from 'shared/utils/validation'
 
-const registerForm = reactive({
-  name: '',
+const loginForm = reactive({
   email: '',
   password: '',
 })
@@ -15,7 +14,7 @@ async function handleSubmit() {
   fieldErrors.value = {}
   errorMessage.value = ''
 
-  const parsed = registerSchema.safeParse(registerForm)
+  const parsed = loginSchema.safeParse(loginForm)
   if (!parsed.success) {
     fieldErrors.value = zodFieldErrors(parsed.error)
     return
@@ -23,13 +22,13 @@ async function handleSubmit() {
 
   loading.value = true
   try {
-    await $fetch('/api/auth/register', {
+    await $fetch('/api/auth/login', {
       method: 'POST',
       body: parsed.data,
     })
     await navigateTo('/')
   } catch {
-    errorMessage.value = 'Could not create account'
+    errorMessage.value = 'Could not sign in'
   } finally {
     loading.value = false
   }
@@ -39,37 +38,13 @@ async function handleSubmit() {
 <template>
   <form class="flex flex-col gap-5" @submit.prevent="handleSubmit">
     <div class="flex flex-col gap-1.5">
-      <label for="name" class="text-sm font-medium text-stone-700">
-        Full name
-        <span class="text-rose-500">*</span>
-      </label>
-      <input
-        id="name"
-        v-model="registerForm.name"
-        name="name"
-        type="text"
-        autocomplete="name"
-        placeholder="Jane Doe"
-        required
-        maxlength="80"
-        class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-stone-900 shadow-sm transition placeholder:text-stone-400 focus:outline-none focus:ring-2"
-        :class="fieldErrors.name
-          ? 'border-rose-300 focus:border-rose-400 focus:ring-rose-100'
-          : 'border-stone-200 focus:border-stone-400 focus:ring-stone-100'"
-      >
-      <p v-if="fieldErrors.name" class="text-sm text-rose-500">
-        {{ fieldErrors.name }}
-      </p>
-    </div>
-
-    <div class="flex flex-col gap-1.5">
       <label for="email" class="text-sm font-medium text-stone-700">
         Email
         <span class="text-rose-500">*</span>
       </label>
       <input
         id="email"
-        v-model="registerForm.email"
+        v-model="loginForm.email"
         name="email"
         type="email"
         autocomplete="email"
@@ -92,13 +67,12 @@ async function handleSubmit() {
       </label>
       <input
         id="password"
-        v-model="registerForm.password"
+        v-model="loginForm.password"
         name="password"
         type="password"
-        autocomplete="new-password"
+        autocomplete="current-password"
         placeholder="••••••••"
         required
-        minlength="8"
         maxlength="128"
         class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-stone-900 shadow-sm transition placeholder:text-stone-400 focus:outline-none focus:ring-2"
         :class="fieldErrors.password
@@ -115,7 +89,7 @@ async function handleSubmit() {
       :disabled="loading"
       class="inline-flex w-full items-center justify-center rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-stone-900/20 transition-all duration-200 hover:bg-stone-800 hover:shadow-lg hover:shadow-stone-900/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 focus-visible:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
     >
-      {{ loading ? 'Creating account…' : 'Create account' }}
+      {{ loading ? 'Signing in…' : 'Sign in' }}
     </button>
 
     <p v-if="errorMessage" class="text-sm text-red-500">
