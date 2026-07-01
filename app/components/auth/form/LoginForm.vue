@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { loginSchema, zodFieldErrors } from 'shared/utils/validation'
+import { loginSchema, zodFieldErrors } from '#shared/utils/validation'
 
 const loginForm = reactive({
   email: '',

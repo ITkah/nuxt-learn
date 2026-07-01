@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { registerSchema, zodFieldErrors } from 'shared/utils/validation'
+import { registerSchema, zodFieldErrors } from '#shared/utils/validation'
 
 const registerForm = reactive({
   name: '',
